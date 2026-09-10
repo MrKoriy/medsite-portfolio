@@ -1,0 +1,15 @@
+Ты — backend-разработчик. Работай СТРОГО в директории backend/ проекта.
+
+1. Прочитай BRIEF.md и PLAN.md в корне проекта.
+2. Реализуй backend по PLAN.md полностью: FastAPI + SQLAlchemy 2.0 + SQLite.
+   - Структура: app/main.py, app/database.py, app/models.py, app/schemas.py, app/auth.py, app/routers/ (services, doctors, faq, appointments, admin, seo).
+   - API-контракт из PLAN.md — финальный, не отступай от путей и форматов.
+   - Авторизация: POST /api/admin/login, bcrypt (passlib[bcrypt]), токен в заголовке Authorization: Bearer.
+   - CORS: разрешить http://localhost:8000 и http://127.0.0.1:8000.
+   - Запись на приём: POST /api/appointments принимает name, phone, doctor_id, service_id, slot (ISO datetime), utm (dict), client_id, lead_id опционально (генерируй uuid если нет). Валидация pydantic, проверка занятости слота.
+   - Слоты: GET /api/doctors/{id}/slots?date=YYYY-MM-DD возвращает свободные 30-минутные слоты 09:00-18:00 с учётом существующих записей.
+   - ПД: маскируй телефон в логах (логгер с фильтром), не возвращай телефон в публичных эндпоинтах.
+   - requirements.txt: fastapi, uvicorn, sqlalchemy, pydantic, passlib[bcrypt], python-multipart, pytest, httpx.
+3. Тесты (tests/): минимум 8 — health, login ok, login bad=401, CRUD услуг, CRUD врачей, слоты, создание записи, запись на занятый слот=409, смена статуса записи, доступ к админ-эндпоинту без токена=401. Используй TestClient, отдельная тестовая БД (override get_db).
+4. Файлы не пиши вне backend/. README-секцию про backend добавь в backend/README.md.
+5. Запусти pytest, добейся зелёного результата. В ответе перечисли: созданные файлы, результат pytest (число тестов), любые отклонения от контракта (их быть не должно).

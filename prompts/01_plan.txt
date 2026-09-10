@@ -1,0 +1,31 @@
+Ты — главный архитектор проекта. Прочитай файл BRIEF.md в текущей директории.
+
+Составь детальный план разработки и сохрани его в файл PLAN.md (в корне проекта). План должен содержать СТРОГО следующие разделы:
+
+## 1. Схема БД (SQLite)
+Таблицы: services, doctors, faq, appointments, admin_users, leads/utm. Для каждой таблицы: колонки, типы, ограничения, связи. Appointment связывает врача и услугу, хранит слот (дата+время), имя и телефон клиента, статус (new/confirmed/cancelled), UTM-метки, clientID, leadID (uuid).
+
+## 2. API-контракт (финальный, неизменяемый)
+Полный список REST-эндпоинтов: метод, путь, тело запроса, ответ, коды ошибок. Обязательно:
+- GET /api/health
+- CRUD /api/services, /api/doctors, /api/faq (запись — под админ-токеном)
+- GET /api/doctors/{id}/slots?date=... (свободные слоты)
+- POST /api/appointments (публичная запись, приём UTM/clientID)
+- GET /api/admin/appointments?status=... , PATCH /api/admin/appointments/{id} (смена статуса)
+- POST /api/admin/login (возвращает токен)
+- Настройки SEO: GET/PUT /api/admin/seo/{page}
+Форматы ошибок единые: {"error": {"code": "...", "message": "..."}}.
+Этот контракт в PLAN.md — ЕДИНСТВЕННЫЙ источник правды для backend и frontend команд.
+
+## 3. Структура файлов
+backend/: app/main.py, app/database.py, app/models.py, app/schemas.py, app/auth.py, app/routers/*.py, tests/*.py, requirements.txt.
+frontend/: index.html, services.html, doctors.html, faq.html, admin.html, css/style.css, js/api.js, js/config.js, js/app.js (+ отдельные js для admin).
+
+## 4. Декомпозиция на две параллельные задачи
+- TASK_BACKEND: всё в backend/ — модели, миграции (create_all), авторизация (bcrypt + токен), все роутеры по контракту, CORS, pydantic-валидация, маскирование телефона в логах, pytest (минимум 8 тестов: health, CRUD услуг/врачей/FAQ, login, запись на приём, слоты, смена статуса, доступ без токена = 401).
+- TASK_FRONTEND: всё в frontend/ — 5 страниц по контракту, js/api.js со всеми вызовами API, admin.html с админкой (login, CRUD, заявки со сменой статуса), форма записи с автоподстановкой врачей/услуг из API и UTM-захватом (парсинг utm_* из URL + clientID в cookie), чистый современный CSS (медицинская тема: белый/голубой, без фреймворков).
+
+## 5. Порядок сборки и риски
+Что писать первым, какие места самые рискованные (слоты/пересечения записей, CORS, авторизация), критерии приёмки из BRIEF.md.
+
+Пиши PLAN.md на русском, лаконично, без воды. Контракт API — на английском (это код-артефакт). Не пиши сам код компонентов — только план.

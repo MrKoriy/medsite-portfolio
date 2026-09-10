@@ -1,0 +1,13 @@
+Ты — frontend-разработчик. Работай СТРОГО в директории frontend/ проекта.
+
+1. Прочитай BRIEF.md и PLAN.md в корне проекта.
+2. Сделай статический фронтенд по API-контракту из PLAN.md: чистые HTML/CSS/JS, без сборщиков и фреймворков.
+   Файлы: index.html, services.html, doctors.html, faq.html, admin.html, css/style.css, js/config.js, js/api.js, js/app.js, js/admin.js.
+   - js/config.js: единственная точка с API_BASE_URL = "http://127.0.0.1:8000".
+   - js/api.js: fetch-обёртки для ВСЕХ эндпоинтов контракта, обработка ошибок (показ сообщения пользователю), авторизационный токен для админки (localStorage).
+   - Публичные страницы: шапка с навигацией, список услуг (из GET /api/services), список врачей с карточками (GET /api/doctors), FAQ (GET /api/faq), форма онлайн-записи на главной или doctors.html: выбор врача -> выбор услуги -> выбор даты -> GET /api/doctors/{id}/slots -> выбор слота -> имя+телефон -> POST /api/appointments.
+   - UTM-захват: js/app.js парсит utm_source/utm_medium/utm_campaign из URL, clientID кладёт в cookie (uuid, 1 год), отправляет с заявкой.
+   - admin.html: форма логина (POST /api/admin/login), таблица заявок со сменой статуса (new/confirmed/cancelled), CRUD услуг/врачей/FAQ, редактирование SEO (GET/PUT /api/admin/seo/{page}).
+   - Дизайн: медицинская тема, белый/голубой (#0d6efd или мягче #3b82c4), чистая типографика, карточки с тенями, адаптив. Без бутстрапа — свой style.css.
+3. Файлы не пиши вне frontend/.
+4. Синтаксис JS проверь `node --check js/*.js`. В ответе перечисли: созданные файлы, какие эндпоинты задействованы, любые вопросы по контракту (расхождения запрещены).
