@@ -12,7 +12,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from .auth import ensure_admin
 from .database import Base, SessionLocal, engine
-from .routers import admin, appointments, doctors, faq, health, services
+from .routers import admin, appointments, assistant, doctors, faq, health, services
 
 
 class PhoneMaskFilter(logging.Filter):
@@ -43,7 +43,7 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=False,
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_headers=["Authorization", "Content-Type", "X-Client-ID"],
 )
 app.include_router(health.router, prefix="/api")
 app.include_router(services.router, prefix="/api")
@@ -51,6 +51,7 @@ app.include_router(doctors.router, prefix="/api")
 app.include_router(faq.router, prefix="/api")
 app.include_router(appointments.router, prefix="/api")
 app.include_router(admin.router, prefix="/api")
+app.include_router(assistant.router, prefix="/api")
 
 
 def error_response(code: str, message: str):
@@ -69,6 +70,12 @@ async def http_exception_handler(request: Request, exc):
         "SLOT_UNAVAILABLE": "The selected slot is unavailable",
         "CONFLICT": "The request conflicts with existing data",
         "VALIDATION_ERROR": "Invalid request",
+        "AI_ASSISTANT_DISABLED": "AI assistant is not configured",
+        "AI_UPSTREAM_ERROR": "AI assistant is temporarily unavailable",
+        "AI_AUTH_ERROR": "AI assistant is temporarily unavailable",
+        "AI_RATE_LIMITED": "Too many requests, please slow down",
+        "AI_BAD_RESPONSE": "AI assistant is temporarily unavailable",
+        "RATE_LIMITED": "Too many requests, please slow down",
     }
     return JSONResponse(status_code=exc.status_code, content={"error": {"code": code, "message": messages.get(code, detail or "Request failed")}})
 
