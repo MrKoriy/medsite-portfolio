@@ -1,10 +1,250 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Админ-панель | МедСфера</title><meta name="robots" content="noindex"><link rel="stylesheet" href="css/style.css"></head>
-<body data-page="admin"><header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><span class="brand-mark">+</span> МедСфера</a><nav class="nav" style="display:flex"><a href="index.html">На сайт</a></nav></div></header><main class="admin-shell"><div class="container"><div class="form-message is-error" data-api-error hidden role="alert"></div><section data-login class="form-card" style="max-width:460px;margin:35px auto"><p class="eyebrow">Закрытый раздел</p><h1 style="font-size:40px">Вход в админ-панель</h1><form data-login-form style="margin-top:25px"><div class="field"><label for="username">Логин</label><input id="username" name="username" autocomplete="username" required></div><div class="field" style="margin-top:15px"><label for="password">Пароль</label><input id="password" name="password" type="password" autocomplete="current-password" required></div><button class="button" type="submit" style="margin-top:20px">Войти</button></form></section><section data-dashboard hidden><div class="admin-header"><div><p class="eyebrow">Рабочее пространство</p><h1 style="font-size:44px">Админ-панель</h1></div><button class="button button-secondary" data-logout type="button">Выйти</button></div><p class="form-message" data-admin-message role="status"></p>
-      <section class="admin-section"><h2>Заявки на приём</h2><div class="field" style="max-width:220px;margin-bottom:15px"><label for="appointment-status">Фильтр по статусу</label><select id="appointment-status" name="appointment_status"><option value="">Все заявки</option><option value="new">Новые</option><option value="confirmed">Подтверждённые</option><option value="cancelled">Отменённые</option></select></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>Время</th><th>Пациент</th><th>Телефон</th><th>Статус</th><th>Изменить</th><th>Lead ID</th></tr></thead><tbody data-appointments-table><tr><td colspan="7">Загрузка…</td></tr></tbody></table></div></section>
-      <section class="admin-section"><h2>Управление контентом</h2><div class="admin-forms"><form class="card admin-form" data-service-form><h3>Услуга</h3><div class="field"><label>Название<input name="name" required maxlength="120"></label></div><div class="field"><label>Описание<textarea name="description"></textarea></label></div><div class="field"><label>Цена, ₽<input name="price" type="number" min="0" required></label></div><div class="field"><label>Длительность, мин.<input name="duration_minutes" type="number" min="1" required></label></div><label class="checkbox"><input name="is_active" type="checkbox" checked> Активна</label><div class="form-actions"><button class="button button-small" data-service-submit type="submit">Добавить услугу</button><button class="button button-small button-ghost" data-service-reset type="button">Сбросить</button></div></form>
-        <form class="card admin-form" data-doctor-form><h3>Врач</h3><div class="field"><label>ФИО<input name="full_name" required maxlength="160"></label></div><div class="field"><label>Специализация<input name="specialty" required maxlength="120"></label></div><div class="field"><label>О враче<textarea name="bio"></textarea></label></div><div class="field"><label>URL фото<input name="photo_url" type="url"></label></div><div class="field"><label>Стаж, лет<input name="experience_years" type="number" min="0" value="0"></label></div><div class="field"><label>Начало работы<input name="work_start" type="time" value="09:00" required></label></div><div class="field"><label>Конец работы<input name="work_end" type="time" value="18:00" required></label></div><div class="field"><label>Шаг слота, мин.<input name="slot_minutes" type="number" min="1" value="30" required></label></div><div class="field"><label>Услуги<select name="service_ids" multiple required size="3"></select></label></div><label class="checkbox"><input name="is_active" type="checkbox" checked> Активен</label><div class="form-actions"><button class="button button-small" data-doctor-submit type="submit">Добавить врача</button><button class="button button-small button-ghost" data-doctor-reset type="button">Сбросить</button></div></form>
-        <form class="card admin-form" data-faq-form><h3>FAQ</h3><div class="field"><label>Вопрос<input name="question" required maxlength="500"></label></div><div class="field"><label>Ответ<textarea name="answer" required></textarea></label></div><div class="field"><label>Порядок<input name="sort_order" type="number" value="0"></label></div><label class="checkbox"><input name="is_active" type="checkbox" checked> Активен</label><div class="form-actions"><button class="button button-small" data-faq-submit type="submit">Добавить вопрос</button><button class="button button-small button-ghost" data-faq-reset type="button">Сбросить</button></div></form></div></section>
-      <section class="admin-section"><h2>SEO-настройки</h2><form class="card form-grid" data-seo-form><div class="field"><label>Страница<select name="seo_page"><option value="index">Главная</option><option value="services">Услуги</option><option value="doctors">Специалисты</option><option value="faq">FAQ</option><option value="admin">Админ-панель</option></select></label></div><div class="field"><label>Title<input name="seo_title" required maxlength="255"></label></div><div class="field field-full"><label>Description<textarea name="seo_description" required maxlength="500"></textarea></label></div><div class="field-full"><button class="button" type="submit">Сохранить SEO</button></div></form></section>
-      <section class="admin-section"><h2>Список услуг</h2><div class="table-wrap"><table><thead><tr><th>Название</th><th>Цена</th><th>Длительность</th><th>Статус</th><th>Действия</th></tr></thead><tbody data-services-table></tbody></table></div></section><section class="admin-section"><h2>Список врачей</h2><div class="table-wrap"><table><thead><tr><th>ФИО</th><th>Специализация</th><th>Стаж</th><th>Статус</th><th>Действия</th></tr></thead><tbody data-doctors-table></tbody></table></div></section><section class="admin-section"><h2>Список FAQ</h2><div class="table-wrap"><table><thead><tr><th>Вопрос</th><th>Ответ</th><th>Статус</th><th>Действия</th></tr></thead><tbody data-faq-table></tbody></table></div></section>
-    </section></div></main><script src="js/config.js"></script><script src="js/api.js"></script><script src="js/admin.js"></script></body></html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Клиническая регистратура и администрирование | МедСфера</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">+</span>
+        <span>МедСфера</span>
+      </a>
+      <nav class="nav" style="display:flex">
+        <a href="index.html">← На главную сайта</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-shell">
+    <div class="container">
+      <div class="form-message is-error" data-api-error hidden role="alert"></div>
+
+      <section data-login class="form-card" style="max-width:440px;margin:40px auto">
+        <p class="eyebrow">Закрытый сектор</p>
+        <h1 style="font-size:32px;line-height:1.15">Авторизация персонала</h1>
+        <form data-login-form style="margin-top:24px">
+          <div class="field">
+            <label for="username">Идентификатор (логин)</label>
+            <input id="username" name="username" autocomplete="username" required>
+          </div>
+          <div class="field" style="margin-top:14px">
+            <label for="password">Ключ доступа (пароль)</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <button class="button" type="submit" style="margin-top:20px;width:100%">Войти в регистратуру</button>
+        </form>
+      </section>
+
+      <section data-dashboard hidden>
+        <div class="admin-header">
+          <div>
+            <p class="eyebrow">Клиническое управление</p>
+            <h1 style="font-size:36px">Журнал отделения</h1>
+          </div>
+          <button class="button button-secondary" data-logout type="button">Завершить смену</button>
+        </div>
+        <p class="form-message" data-admin-message role="status"></p>
+
+        <section class="admin-section">
+          <h2>Журнал записей на приём</h2>
+          <div class="field" style="max-width:240px;margin-bottom:16px">
+            <label for="appointment-status">Фильтрация по статусу</label>
+            <select id="appointment-status" name="appointment_status">
+              <option value="">Все статусы</option>
+              <option value="new">Новые заявки</option>
+              <option value="confirmed">Подтверждённые приёмы</option>
+              <option value="cancelled">Отменённые</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Слот приёма</th>
+                  <th>Пациент</th>
+                  <th>Телефон</th>
+                  <th>Статус</th>
+                  <th>Действие</th>
+                  <th>Идентификатор заявки</th>
+                </tr>
+              </thead>
+              <tbody data-appointments-table>
+                <tr><td colspan="7">Синхронизация записей…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section">
+          <h2>Реестр отделений и врачебного состава</h2>
+          <div class="admin-forms">
+            <form class="card admin-form" data-service-form>
+              <h3>Добавить медицинскую услугу</h3>
+              <div class="field">
+                <label>Наименование услуги<input name="name" required maxlength="120"></label>
+              </div>
+              <div class="field">
+                <label>Клиническое описание<textarea name="description"></textarea></label>
+              </div>
+              <div class="field">
+                <label>Тариф, ₽<input name="price" type="number" min="0" required></label>
+              </div>
+              <div class="field">
+                <label>Длительность, мин.<input name="duration_minutes" type="number" min="1" required></label>
+              </div>
+              <label class="checkbox"><input name="is_active" type="checkbox" checked> Услуга доступна в регистратуре</label>
+              <div class="form-actions">
+                <button class="button button-small" data-service-submit type="submit">Сохранить</button>
+                <button class="button button-small button-ghost" data-service-reset type="button">Очистить</button>
+              </div>
+            </form>
+
+            <form class="card admin-form" data-doctor-form>
+              <h3>Добавить врача в штат</h3>
+              <div class="field">
+                <label>ФИО специалиста<input name="full_name" required maxlength="160"></label>
+              </div>
+              <div class="field">
+                <label>Профиль и специализация<input name="specialty" required maxlength="120"></label>
+              </div>
+              <div class="field">
+                <label>Клинический опыт / регалии<textarea name="bio"></textarea></label>
+              </div>
+              <div class="field">
+                <label>Ссылка на портрет (URL)<input name="photo_url" type="url"></label>
+              </div>
+              <div class="field">
+                <label>Стаж практики (лет)<input name="experience_years" type="number" min="0" value="0"></label>
+              </div>
+              <div class="field">
+                <label>Начало смены<input name="work_start" type="time" value="09:00" required></label>
+              </div>
+              <div class="field">
+                <label>Конец смены<input name="work_end" type="time" value="18:00" required></label>
+              </div>
+              <div class="field">
+                <label>Шаг слота, мин.<input name="slot_minutes" type="number" min="1" value="30" required></label>
+              </div>
+              <div class="field">
+                <label>Профильные услуги<select name="service_ids" multiple required size="3"></select></label>
+              </div>
+              <label class="checkbox"><input name="is_active" type="checkbox" checked> Врач ведёт приём</label>
+              <div class="form-actions">
+                <button class="button button-small" data-doctor-submit type="submit">Сохранить</button>
+                <button class="button button-small button-ghost" data-doctor-reset type="button">Очистить</button>
+              </div>
+            </form>
+
+            <form class="card admin-form" data-faq-form>
+              <h3>Регламент / Справка (FAQ)</h3>
+              <div class="field">
+                <label>Вопрос пациента<input name="question" required maxlength="500"></label>
+              </div>
+              <div class="field">
+                <label>Ответ клиники<textarea name="answer" required></textarea></label>
+              </div>
+              <div class="field">
+                <label>Позиция в списке<input name="sort_order" type="number" value="0"></label>
+              </div>
+              <label class="checkbox"><input name="is_active" type="checkbox" checked> Отображать на сайте</label>
+              <div class="form-actions">
+                <button class="button button-small" data-faq-submit type="submit">Сохранить</button>
+                <button class="button button-small button-ghost" data-faq-reset type="button">Очистить</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="admin-section">
+          <h2>Метаданные страниц (SEO)</h2>
+          <form class="card form-grid" data-seo-form>
+            <div class="field">
+              <label>Раздел сайта
+                <select name="seo_page">
+                  <option value="index">Главная</option>
+                  <option value="services">Услуги</option>
+                  <option value="doctors">Специалисты</option>
+                  <option value="faq">Вопросы и ответы</option>
+                  <option value="admin">Административный раздел</option>
+                </select>
+              </label>
+            </div>
+            <div class="field">
+              <label>Title (Заголовок в выдаче)<input name="seo_title" required maxlength="255"></label>
+            </div>
+            <div class="field field-full">
+              <label>Description (Краткое описание)<textarea name="seo_description" required maxlength="500"></textarea></label>
+            </div>
+            <div class="field-full">
+              <button class="button" type="submit">Обновить мета-профиль</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-section">
+          <h2>Реестр медицинских услуг</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Услуга</th>
+                  <th>Тариф</th>
+                  <th>Длительность</th>
+                  <th>Статус</th>
+                  <th>Управление</th>
+                </tr>
+              </thead>
+              <tbody data-services-table></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section">
+          <h2>Реестр специалистов</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Врач</th>
+                  <th>Специализация</th>
+                  <th>Стаж</th>
+                  <th>Статус</th>
+                  <th>Управление</th>
+                </tr>
+              </thead>
+              <tbody data-doctors-table></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-section">
+          <h2>Реестр справок (FAQ)</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Вопрос</th>
+                  <th>Ответ</th>
+                  <th>Статус</th>
+                  <th>Управление</th>
+                </tr>
+              </thead>
+              <tbody data-faq-table></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

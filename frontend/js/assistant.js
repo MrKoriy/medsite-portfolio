@@ -1,4 +1,4 @@
-/* AI-ассистент «МедСферы»: плавающий виджет чата. */
+/* Клинический ассистент «МедСферы»: минималистичный виджет консультации. */
 (function () {
   "use strict";
 
@@ -26,7 +26,7 @@
   function saveHistory() {
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state.history.slice(-MAX_HISTORY)));
-    } catch (_) { /* приватный режим — не страшно */ }
+    } catch (_) { /* приватный режим — пропускаем */ }
   }
 
   function clientId() {
@@ -49,11 +49,15 @@
     panel.hidden = true;
 
     var header = el("div", "ai-chat__header");
-    header.appendChild(el("strong", "", "Ассистент МедСферы"));
-    header.appendChild(el("span", "ai-chat__hint", "услуги · врачи · запись"));
-    var closeBtn = el("button", "ai-chat__close", "×");
+    var headerInfo = el("div", "ai-chat__header-info");
+    headerInfo.appendChild(el("strong", "", "Клинический консультант"));
+    headerInfo.appendChild(el("span", "ai-chat__hint", "онлайн"));
+    header.appendChild(headerInfo);
+
+    var closeBtn = el("button", "ai-chat__close");
     closeBtn.type = "button";
-    closeBtn.setAttribute("aria-label", "Закрыть чат");
+    closeBtn.setAttribute("aria-label", "Закрыть диалог");
+    closeBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
     header.appendChild(closeBtn);
 
     var log = el("div", "ai-chat__log");
@@ -65,13 +69,16 @@
     var input = el("input", "ai-chat__input");
     input.type = "text";
     input.name = "question";
-    input.placeholder = "Спросите про услуги или запись…";
+    input.placeholder = "Спросите о приёме, услугах или врачах…";
     input.maxLength = 800;
     input.autocomplete = "off";
     input.required = true;
-    var sendBtn = el("button", "ai-chat__send", "➤");
+
+    var sendBtn = el("button", "ai-chat__send");
     sendBtn.type = "submit";
-    sendBtn.setAttribute("aria-label", "Отправить");
+    sendBtn.setAttribute("aria-label", "Отправить вопрос");
+    sendBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+
     form.appendChild(input);
     form.appendChild(sendBtn);
 
@@ -84,9 +91,10 @@
     panel.appendChild(statusLine);
     panel.appendChild(form);
 
-    var fab = el("button", "ai-chat__fab", "💬");
+    var fab = el("button", "ai-chat__fab");
     fab.type = "button";
-    fab.setAttribute("aria-label", "Открыть чат с ассистентом");
+    fab.setAttribute("aria-label", "Открыть консультант клиники");
+    fab.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span>Консультант</span>';
 
     root.appendChild(panel);
     root.appendChild(fab);
@@ -130,7 +138,7 @@
     sendBtn.disabled = true;
     input.disabled = true;
     statusLine.hidden = false;
-    statusLine.textContent = "Ассистент печатает…";
+    statusLine.textContent = "Консультант формирует ответ…";
 
     bubble(log, "user", question);
     input.value = "";
@@ -152,13 +160,13 @@
         if (!result.ok) {
           var code = result.data && result.data.error ? result.data.error.code : "ERROR";
           var friendly = {
-            AI_ASSISTANT_DISABLED: "Ассистент временно отключён, но вы всегда можете оставить заявку в форме записи.",
-            RATE_LIMITED: "Слишком много вопросов подряд — чуть-чуть помедленнее 🙂",
-            AI_RATE_LIMITED: "Ассистент перегружен, попробуйте через минуту.",
+            AI_ASSISTANT_DISABLED: "Консультант временно недоступен. Вы можете оформить запись напрямую через регистратуру на сайте.",
+            RATE_LIMITED: "Слишком частые запросы. Пожалуйста, подождите минуту перед следующим вопросом.",
+            AI_RATE_LIMITED: "Высокая нагрузка на сервис. Попробуйте повторить запрос через минуту.",
           };
-          bubble(log, "assistant", friendly[code] || "Что-то пошло не так. Попробуйте ещё раз или оставьте заявку в форме записи.");
+          bubble(log, "assistant", friendly[code] || "Не удалось получить ответ. Пожалуйста, оформите заявку на приём на сайте.");
         } else {
-          var answer = (result.data && result.data.answer) || "Пустой ответ, попробуйте ещё раз.";
+          var answer = (result.data && result.data.answer) || "Ответ не сформирован. Повторите запрос.";
           bubble(log, "assistant", answer);
           state.history.push({ role: "user", content: question });
           state.history.push({ role: "assistant", content: answer });
@@ -166,7 +174,7 @@
         }
       })
       .catch(function () {
-        bubble(log, "assistant", "Нет связи с сервером. Проверьте соединение или оставьте заявку в форме записи.");
+        bubble(log, "assistant", "Нет связи с клиническим сервером. Проверьте сеть или воспользуйтесь формой записи.");
       })
       .finally(function () {
         state.busy = false;

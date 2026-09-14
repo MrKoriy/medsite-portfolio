@@ -1,13 +1,181 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>МедСфера | Забота о здоровье</title><meta name="description" content="Современная медицинская клиника и онлайн-запись к специалистам"><link rel="stylesheet" href="css/style.css"></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>МедСфера — Клиника доказательной медицины</title>
+  <meta name="description" content="Клиника доказательной медицины МедСфера. Квалифицированные врачи, прозрачные протоколы лечения и онлайн-запись.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body data-page="index">
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><span class="brand-mark">+</span> МедСфера</a><button class="menu-button" data-menu-button aria-expanded="false" aria-label="Открыть меню">☰</button><nav class="nav" data-nav aria-label="Основная навигация"><a aria-current="page" href="index.html">Главная</a><a href="services.html">Услуги</a><a href="doctors.html">Специалисты</a><a href="faq.html">FAQ</a><a class="button button-small" href="#appointment">Записаться</a></nav></div></header>
-  <main><section class="hero"><div class="container hero-grid"><div class="hero-copy"><p class="eyebrow">Клиника, которой можно доверять</p><h1>Здоровье начинается с внимания</h1><p>Помогаем заботиться о себе спокойно и уверенно: опытные врачи, понятный план лечения и запись в удобное время.</p><a class="button" href="#appointment">Выбрать время приёма</a></div><div class="hero-art" aria-hidden="true"><div class="hero-card"><div class="pulse">+</div><strong>Всё в одном месте</strong><p>Диагностика, консультации и сопровождение без лишней суеты.</p></div></div></div></section>
-    <section class="section" id="services"><div class="container"><div class="section-heading"><div><p class="eyebrow">Что мы делаем</p><h2>Услуги клиники</h2></div><a href="services.html" class="button button-secondary">Все услуги</a></div><div class="grid" data-services-list aria-live="polite"><p class="empty-state">Загружаем услуги…</p></div></div></section>
-    <section class="section section-soft"><div class="container"><div class="section-heading"><div><p class="eyebrow">Команда</p><h2>Врачи рядом</h2></div><a href="doctors.html" class="button button-secondary">Все специалисты</a></div><div class="grid" data-doctors-list aria-live="polite"><p class="empty-state">Загружаем врачей…</p></div></div></section>
-    <section class="section" id="appointment"><div class="container"><div class="section-heading"><div><p class="eyebrow">Без звонка и ожидания</p><h2>Запишитесь онлайн</h2></div><p>Выберите услугу, врача и удобный слот. Мы подтвердим заявку и свяжемся с вами.</p></div><div class="form-card"><form data-appointment-form><div class="form-grid"><div class="field"><label for="service">Услуга</label><select id="service" name="service_id" required><option value="">Загружаем услуги…</option></select></div><div class="field"><label for="doctor">Врач</label><select id="doctor" name="doctor_id" required><option value="">Сначала выберите услугу</option></select></div><div class="field"><label for="date">Дата</label><input id="date" name="date" type="date" required></div><div class="field"><label for="slot">Время</label><select id="slot" name="slot_start" required disabled><option value="">Сначала выберите дату</option></select><small data-slots-hint>Доступные слоты появятся после выбора даты.</small></div><div class="field"><label for="client-name">Имя</label><input id="client-name" name="client_name" autocomplete="name" placeholder="Анна" required minlength="2" maxlength="120"></div><div class="field"><label for="client-phone">Телефон</label><input id="client-phone" name="client_phone" type="tel" autocomplete="tel" placeholder="+7 (999) 000-00-00" required pattern="\+?[0-9 ()-]{10,24}"></div></div><div class="form-actions"><button class="button" type="submit">Отправить заявку</button><p class="form-message" data-form-message role="status"></p></div></form><div class="success-panel" data-appointment-success hidden role="status" tabindex="-1"><strong>Заявка принята</strong><p>Спасибо. Мы свяжемся с вами для подтверждения времени.</p><small>ID заявки: <code data-lead-id></code></small></div></div></div></section></main>
-  <footer class="site-footer"><div class="container footer-inner"><strong>МедСфера</strong><p>Пн–Сб, 09:00–18:00 · +7 (999) 000-00-00</p><p>© <span data-year></span> МедСфера</p></div></footer>
-  <div class="container"><p class="form-message is-error" data-api-error hidden role="alert"></p></div>
-  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/app.js"></script><script src="js/assistant.js"></script>
-</body></html>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">+</span>
+        <span>МедСфера</span>
+      </a>
+      <button class="menu-button" data-menu-button aria-expanded="false" aria-label="Открыть меню">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      <nav class="nav" data-nav aria-label="Основная навигация">
+        <a aria-current="page" href="index.html">Главная</a>
+        <a href="services.html">Услуги</a>
+        <a href="doctors.html">Специалисты</a>
+        <a href="faq.html">Вопросы и ответы</a>
+        <a class="button button-small" href="#appointment">Записаться на приём</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Лицензия № ЛО-77-01-021480 · Доказательная практика</p>
+          <h1>Доказательная медицина и бережная диагностика</h1>
+          <p>Консультации профильных специалистов, лабораторная диагностика и непрерывное ведение пациентов. Никаких избыточных назначений и коммерческих шаблонов.</p>
+          <div class="hero-actions">
+            <a class="button" href="#appointment">Выбрать врача и время</a>
+            <a class="button button-secondary" href="services.html">Прейскурант услуг</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Информация об отделении">
+          <div class="hero-card">
+            <div class="desk-header">
+              <span class="desk-badge">Приёмное отделение</span>
+              <span class="desk-schedule">Пн–Сб 08:30–20:30</span>
+            </div>
+            <h3 class="desk-title">Клинический регламент</h3>
+            <p class="desk-lead">Все первичные консультации длятся от 30 минут. Врач собирает подробный анамнез, объясняет план лечения простым языком и остаётся на связи.</p>
+            <div class="desk-metrics">
+              <div class="metric-item">
+                <strong>15+ лет</strong>
+                <span>клинический опыт</span>
+              </div>
+              <div class="metric-item">
+                <strong>30–60 мин</strong>
+                <span>время приёма</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Отделения и программы</p>
+            <h2>Медицинские услуги</h2>
+            <p>Фиксированная стоимость, открытый состав приёма и соблюдение доказательных клинических рекомендаций.</p>
+          </div>
+          <a href="services.html" class="button button-secondary">Все услуги клиники</a>
+        </div>
+        <div class="grid" data-services-list aria-live="polite">
+          <p class="empty-state">Загружаем список услуг…</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="doctors">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Врачебный состав</p>
+            <h2>Специалисты клиники</h2>
+            <p>Врачи высшей категории и профильные диагносты с подтверждённым стажем и академической подготовкой.</p>
+          </div>
+          <a href="doctors.html" class="button button-secondary">Все врачи</a>
+        </div>
+        <div class="grid" data-doctors-list aria-live="polite">
+          <p class="empty-state">Загружаем данные врачей…</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="appointment">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Электронная регистратура</p>
+            <h2>Запись на консультацию</h2>
+            <p>Выберите профиль услуги, врача и свободный интервал. Система забронирует слот в расписании отделения.</p>
+          </div>
+        </div>
+        <div class="form-card">
+          <form data-appointment-form>
+            <div class="form-grid">
+              <div class="field">
+                <label for="service">Медицинская услуга</label>
+                <select id="service" name="service_id" required>
+                  <option value="">Загружаем услуги…</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="doctor">Лечащий специалист</label>
+                <select id="doctor" name="doctor_id" required>
+                  <option value="">Сначала выберите услугу</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="date">Дата визита</label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div class="field">
+                <label for="slot">Интервал приёма</label>
+                <select id="slot" name="slot_start" required disabled>
+                  <option value="">Сначала выберите дату</option>
+                </select>
+                <small data-slots-hint>Доступные интервалы появятся после выбора даты визита.</small>
+              </div>
+              <div class="field">
+                <label for="client-name">Имя и фамилия пациента</label>
+                <input id="client-name" name="client_name" autocomplete="name" placeholder="Анна Иванова" required minlength="2" maxlength="120">
+              </div>
+              <div class="field">
+                <label for="client-phone">Контактный телефон</label>
+                <input id="client-phone" name="client_phone" type="tel" autocomplete="tel" placeholder="+7 (999) 000-00-00" required pattern="\+?[0-9 ()-]{10,24}">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="button" type="submit">Забронировать визит</button>
+              <p class="form-message" data-form-message role="status"></p>
+            </div>
+          </form>
+          <div class="success-panel" data-appointment-success hidden role="status" tabindex="-1">
+            <strong>Запись успешно зарегистрирована</strong>
+            <p>Данные переданы в приёмное отделение. Администратор свяжется с вами для подтверждения времени.</p>
+            <small>Номер протокола бронирования: <code data-lead-id></code></small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Клиника МедСфера</strong>
+        <p>Медицинская лицензия № ЛО-77-01-021480 от 18.04.2021</p>
+      </div>
+      <div>
+        <p>Приёмное отделение: Пн–Сб 08:30–20:30</p>
+        <p>Прямая линия: +7 (495) 210-44-00 · Москва, Клинический проезд, 4</p>
+      </div>
+      <div>
+        <p>© <span data-year></span> МедСфера. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="container">
+    <p class="form-message is-error" data-api-error hidden role="alert"></p>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/assistant.js"></script>
+</body>
+</html>
