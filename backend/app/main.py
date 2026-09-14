@@ -100,3 +100,10 @@ async def response_validation_exception_handler(request: Request, exc: ResponseV
 async def unhandled_exception_handler(request: Request, exc: Exception):
     logging.getLogger(__name__).exception("Unhandled application error", exc_info=exc)
     return JSONResponse(status_code=500, content={"error": {"code": "INTERNAL_ERROR", "message": "Internal server error"}})
+
+
+from fastapi.staticfiles import StaticFiles
+frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../frontend"))
+if os.path.exists(frontend_dir):
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+
