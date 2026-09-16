@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   scroll-world · Haute Couture Clinical Engine Overrides
+   Dark Obsidian & Surgical Emerald Architecture
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Integration with Site Header */
+.world-hero {
+  position: relative;
+  width: 100%;
+}
+
+.sw-topbar {
+  top: 64px !important;
+}
+
+/* ── Mobile Haute Couture (< 860px) ─────────────────────────────────── */
+@media (max-width: 860px) {
+  .sw-topbar {
+    display: none !important;
+  }
+  
+  .sw-copylayer::before {
+    display: none !important;
+  }
+
+  .sw-copy {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+    background: rgba(16, 23, 29, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 18px !important;
+    padding: 16px 18px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+  }
+
+  .sw-copy__num {
+    font-size: 0.7rem !important;
+    color: var(--accent) !important;
+  }
+
+  .sw-copy__eyebrow {
+    margin-top: 6px !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.12em !important;
+    color: var(--accent) !important;
+  }
+
+  .sw-copy__title {
+    font-size: 1.28rem !important;
+    line-height: 1.25 !important;
+    margin: 4px 0 0 !important;
+    color: #f8fafc !important;
+  }
+
+  .sw-copy__body {
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+    color: #94a3b8 !important;
+  }
+
+  .sw-copy__tags {
+    margin-top: 10px !important;
+    gap: 6px !important;
+  }
+
+  .sw-copy__tags li {
+    font-size: 0.72rem !important;
+    padding: 3px 10px !important;
+    border-radius: 999px !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  }
+
+  .sw-copy__cta {
+    margin-top: 14px !important;
+    gap: 8px !important;
+  }
+
+  .sw-btn {
+    padding: 10px 18px !important;
+    font-size: 0.85rem !important;
+  }
+
+  .sw-route {
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    gap: 10px !important;
+  }
+}
