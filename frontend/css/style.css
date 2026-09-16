@@ -4,41 +4,41 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Surfaces & Canvas */
-  --bg-page: #fafaf8;
-  --bg-surface: #ffffff;
-  --bg-subtle: #f2f3ee;
-  --bg-muted: #e9eae4;
+  /* Surfaces & Canvas (Dark Obsidian & Clinical Precision) */
+  --bg-page: #090d11;
+  --bg-surface: #10171d;
+  --bg-subtle: #162028;
+  --bg-muted: #1c2732;
 
-  /* Typography & Ink (No harsh pure #000) */
-  --ink-primary: #121517;
-  --ink-secondary: #4f5761;
-  --ink-tertiary: #7d8692;
-  --ink-inverse: #ffffff;
+  /* Typography & Ink */
+  --ink-primary: #f8fafc;
+  --ink-secondary: #94a3b8;
+  --ink-tertiary: #64748b;
+  --ink-inverse: #090d11;
 
-  /* Brand / Clinical Accent (Deep surgical spruce & restrained tint) */
-  --accent: #11382d;
-  --accent-hover: #0a241c;
-  --accent-subtle: #edf4f1;
-  --accent-line: #c1d7cd;
+  /* Brand / Clinical Accent (Surgical Mint & Emerald) */
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-subtle: rgba(16, 185, 129, 0.12);
+  --accent-line: rgba(16, 185, 129, 0.35);
 
   /* Structural Hairlines */
-  --line: #e3e4de;
-  --line-strong: #cacbc3;
+  --line: #1c2630;
+  --line-strong: #293846;
 
   /* Functional & Status */
-  --danger: #9e2a2b;
-  --danger-subtle: #fbf0f0;
-  --danger-line: #ecc8c8;
-  --success: #1b5e3d;
-  --success-subtle: #edf7f1;
-  --success-line: #bfe5cf;
+  --danger: #f87171;
+  --danger-subtle: rgba(239, 68, 68, 0.12);
+  --danger-line: rgba(239, 68, 68, 0.35);
+  --success: #34d399;
+  --success-subtle: rgba(52, 211, 153, 0.12);
+  --success-line: rgba(52, 211, 153, 0.35);
 
   /* scroll-world Theme Override */
-  --sw-bg: #fafaf8;
-  --sw-ink: #121517;
-  --sw-ink-soft: #4f5761;
-  --sw-accent: #11382d;
+  --sw-bg: #090d11;
+  --sw-ink: #f8fafc;
+  --sw-ink-soft: #94a3b8;
+  --sw-accent: #10b981;
   --sw-font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --sw-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -1149,5 +1149,76 @@ tr:last-child td {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/* ── scroll-world Mobile Haute Couture Overrides ───────────────────── */
+@media (max-width: 860px) {
+  .sw-topbar {
+    display: none !important;
+  }
+  .sw-copylayer::before {
+    display: none !important;
+  }
+  .sw-copy {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+    background: rgba(16, 23, 29, 0.94) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 18px !important;
+    padding: 16px 18px !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+  }
+  .sw-copy__num {
+    font-size: 0.7rem !important;
+    color: var(--accent) !important;
+  }
+  .sw-copy__eyebrow {
+    margin-top: 6px !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.12em !important;
+  }
+  .sw-copy__title {
+    font-size: 1.28rem !important;
+    line-height: 1.25 !important;
+    margin: 4px 0 0 !important;
+    color: #f8fafc !important;
+  }
+  .sw-copy__body {
+    font-size: 0.86rem !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+    color: #94a3b8 !important;
+  }
+  .sw-copy__tags {
+    margin-top: 10px !important;
+    gap: 6px !important;
+  }
+  .sw-copy__tags li {
+    font-size: 0.72rem !important;
+    padding: 3px 10px !important;
+    border-radius: 999px !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  }
+  .sw-copy__cta {
+    margin-top: 14px !important;
+    gap: 8px !important;
+  }
+  .sw-btn {
+    padding: 10px 18px !important;
+    font-size: 0.85rem !important;
+  }
+  .sw-route {
+    right: 8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    gap: 10px !important;
   }
 }

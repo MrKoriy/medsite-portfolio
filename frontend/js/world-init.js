@@ -4,12 +4,14 @@
   const worldEl = document.getElementById("world");
   if (!worldEl || typeof window.mountScrollWorld !== "function") return;
 
+  const isMobile = window.innerWidth <= 860;
+
   window.mountScrollWorld(worldEl, {
     brand: null,
     cta: null,
-    hint: "прокрутите для обзора клиники",
-    diveScroll: 1.1,
-    connScroll: 0.7,
+    hint: isMobile ? "проведите для обзора" : "прокрутите для обзора клиники",
+    diveScroll: isMobile ? 0.7 : 1.1,
+    connScroll: isMobile ? 0.5 : 0.7,
     atmosphere: true,
     sections: [
       {
