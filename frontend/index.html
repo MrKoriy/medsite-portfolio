@@ -28,38 +28,8 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Лицензия № ЛО-77-01-021480 · Доказательная практика</p>
-          <h1>Доказательная медицина и бережная диагностика</h1>
-          <p>Консультации профильных специалистов, лабораторная диагностика и непрерывное ведение пациентов. Никаких избыточных назначений и коммерческих шаблонов.</p>
-          <div class="hero-actions">
-            <a class="button" href="#appointment">Выбрать врача и время</a>
-            <a class="button button-secondary" href="services.html">Прейскурант услуг</a>
-          </div>
-        </div>
-        <div class="hero-art" aria-label="Информация об отделении">
-          <div class="hero-card">
-            <div class="desk-header">
-              <span class="desk-badge">Приёмное отделение</span>
-              <span class="desk-schedule">Пн–Сб 08:30–20:30</span>
-            </div>
-            <h3 class="desk-title">Клинический регламент</h3>
-            <p class="desk-lead">Все первичные консультации длятся от 30 минут. Врач собирает подробный анамнез, объясняет план лечения простым языком и остаётся на связи.</p>
-            <div class="desk-metrics">
-              <div class="metric-item">
-                <strong>15+ лет</strong>
-                <span>клинический опыт</span>
-              </div>
-              <div class="metric-item">
-                <strong>30–60 мин</strong>
-                <span>время приёма</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section class="world-hero" aria-label="Интерактивный 3D-обзор отделений клиники">
+      <div id="world"></div>
     </section>
 
     <section class="section" id="services">
@@ -175,6 +145,8 @@
 
   <script src="js/config.js"></script>
   <script src="js/api.js"></script>
+  <script src="js/scrub-engine.js"></script>
+  <script src="js/world-init.js"></script>
   <script src="js/app.js"></script>
   <script src="js/assistant.js"></script>
 </body>

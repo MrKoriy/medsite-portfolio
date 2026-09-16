@@ -34,6 +34,24 @@
   --success-subtle: #edf7f1;
   --success-line: #bfe5cf;
 
+  /* scroll-world Theme Override */
+  --sw-bg: #fafaf8;
+  --sw-ink: #121517;
+  --sw-ink-soft: #4f5761;
+  --sw-accent: #11382d;
+  --sw-font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --sw-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* scroll-world integration */
+.sw-topbar {
+  top: 64px !important;
+}
+.world-hero {
+  position: relative;
+  width: 100%;
+}
+
   /* Radii (Disciplined, architectural — no bubbly AI slop) */
   --radius-xs: 2px;
   --radius-sm: 4px;
