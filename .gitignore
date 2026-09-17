@@ -8,3 +8,6 @@ __pycache__/
 preview_shot.png
 *.png
 *.log
+
+# local QA artifacts (screenshots, playwright checks)
+media-review/
