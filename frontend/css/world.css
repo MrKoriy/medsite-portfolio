@@ -1,6 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   scroll-world · Haute Couture Clinical Engine Overrides
-   Dark Obsidian & Surgical Emerald Architecture
+   scroll-world · Warm Editorial Overrides
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* Integration with Site Header */
@@ -9,12 +8,11 @@
   width: 100%;
 }
 
-/* UI Cleanup: Hide particles, route navigation, topbar, and hints */
+/* UI Cleanup: engine chrome stays quiet on the video stage */
 .sw-particles,
 .sw-route,
 .sw-topbar,
-.sw-hint,
-.sw-topbar__hint {
+.sw-hint {
   display: none !important;
 }
 
@@ -32,6 +30,14 @@
 
   .sw-copylayer::before {
     width: 50% !important;
+    background: linear-gradient(90deg, var(--sw-bg) 0%, color-mix(in srgb, var(--sw-bg) 82%, transparent) 62%, transparent 100%) !important;
+  }
+
+  .sw-copy {
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
@@ -41,8 +47,8 @@
   inset: 0;
   z-index: 40;
   pointer-events: none;
-  background: #090d11;
-  color: #ffffff;
+  background: var(--bg-page, #f7f4ee);
+  color: var(--ink-primary, #29322c);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,21 +60,18 @@
 }
 
 .flow-overlay__heading {
-  font-family: var(--sw-font-display, ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif);
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-family: var(--sw-font-display, 'Golos Text', system-ui, sans-serif);
+  font-size: clamp(1.7rem, 4vw, 3rem);
   font-weight: 700;
-  line-height: 1.15;
-  max-width: 700px;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  max-width: 640px;
   margin: 0;
-  color: #ffffff;
+  color: var(--ink-primary, #29322c);
 }
 
-/* ── Mobile Haute Couture (< 860px) ─────────────────────────────────── */
+/* ── Mobile Editorial Copy ( < 860px ) ──────────────────────────────── */
 @media (max-width: 860px) {
-  .sw-topbar {
-    display: none !important;
-  }
-  
   .sw-copylayer::before {
     display: none !important;
   }
@@ -79,39 +82,39 @@
     bottom: calc(18px + env(safe-area-inset-bottom)) !important;
     width: auto !important;
     max-width: none !important;
-    background: rgba(16, 23, 29, 0.94) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 18px !important;
+    background: rgba(255, 254, 250, 0.96) !important;
+    border: 1px solid var(--line, #e5dfd2) !important;
+    border-radius: var(--radius-md, 8px) !important;
     padding: 16px 18px !important;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 0 12px 32px rgba(60, 52, 38, 0.16) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .sw-copy__num {
     font-size: 0.7rem !important;
-    color: var(--accent) !important;
+    color: var(--accent, #48614f) !important;
   }
 
   .sw-copy__eyebrow {
     margin-top: 6px !important;
     font-size: 0.68rem !important;
     letter-spacing: 0.12em !important;
-    color: var(--accent) !important;
+    color: var(--accent, #48614f) !important;
   }
 
   .sw-copy__title {
-    font-size: 1.28rem !important;
+    font-size: 1.26rem !important;
     line-height: 1.25 !important;
     margin: 4px 0 0 !important;
-    color: #f8fafc !important;
+    color: var(--ink-primary, #29322c) !important;
   }
 
   .sw-copy__body {
-    font-size: 0.86rem !important;
+    font-size: 0.87rem !important;
     line-height: 1.45 !important;
     margin-top: 6px !important;
-    color: #94a3b8 !important;
+    color: var(--ink-secondary, #5d655d) !important;
   }
 
   .sw-copy__tags {
@@ -123,9 +126,9 @@
     font-size: 0.72rem !important;
     padding: 3px 10px !important;
     border-radius: 999px !important;
-    background: rgba(16, 185, 129, 0.12) !important;
-    color: #34d399 !important;
-    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    background: var(--accent-subtle, rgba(72, 97, 79, 0.08)) !important;
+    color: var(--accent, #48614f) !important;
+    border: 1px solid var(--accent-line, rgba(72, 97, 79, 0.3)) !important;
   }
 
   .sw-copy__cta {
@@ -138,10 +141,19 @@
     font-size: 0.85rem !important;
   }
 
+  .sw-btn--primary {
+    background: var(--accent, #48614f) !important;
+    color: #fffefa !important;
+    border-color: var(--accent, #48614f) !important;
+  }
+
+  .sw-btn--ghost {
+    color: var(--ink-primary, #29322c) !important;
+    border-color: var(--line-strong, #d4ccbb) !important;
+    background: transparent !important;
+  }
+
   .sw-route {
-    right: 8px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    gap: 10px !important;
+    display: none !important;
   }
 }

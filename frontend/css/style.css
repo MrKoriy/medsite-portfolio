@@ -1,71 +1,61 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   МедСфера · Clinical Minimalist Design System
-   Haute Couture & Anti-AI Architectural Discipline
+   МедСфера · Warm Editorial Light Design System
+   Palette derived from the clinic video assets (warm ivory, oak, sage)
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Surfaces & Canvas (Dark Obsidian & Clinical Precision) */
-  --bg-page: #090d11;
-  --bg-surface: #10171d;
-  --bg-subtle: #162028;
-  --bg-muted: #1c2732;
+  /* Surfaces & Canvas */
+  --bg-page: #f7f4ee;
+  --bg-surface: #fffefa;
+  --bg-subtle: #f1ede4;
+  --bg-muted: #e9e4d8;
 
   /* Typography & Ink */
-  --ink-primary: #f8fafc;
-  --ink-secondary: #94a3b8;
-  --ink-tertiary: #64748b;
-  --ink-inverse: #090d11;
+  --ink-primary: #29322c;
+  --ink-secondary: #5d655d;
+  --ink-tertiary: #8a9088;
+  --ink-inverse: #fffefa;
 
-  /* Brand / Clinical Accent (Surgical Mint & Emerald) */
-  --accent: #10b981;
-  --accent-hover: #059669;
-  --accent-subtle: rgba(16, 185, 129, 0.12);
-  --accent-line: rgba(16, 185, 129, 0.35);
+  /* Brand / Clinical Accent (Sage) */
+  --accent: #48614f;
+  --accent-hover: #3a4e3f;
+  --accent-subtle: rgba(72, 97, 79, 0.08);
+  --accent-line: rgba(72, 97, 79, 0.3);
 
   /* Structural Hairlines */
-  --line: #1c2630;
-  --line-strong: #293846;
+  --line: #e5dfd2;
+  --line-strong: #d4ccbb;
 
   /* Functional & Status */
-  --danger: #f87171;
-  --danger-subtle: rgba(239, 68, 68, 0.12);
-  --danger-line: rgba(239, 68, 68, 0.35);
-  --success: #34d399;
-  --success-subtle: rgba(52, 211, 153, 0.12);
-  --success-line: rgba(52, 211, 153, 0.35);
+  --danger: #b3423f;
+  --danger-subtle: rgba(179, 66, 63, 0.08);
+  --danger-line: rgba(179, 66, 63, 0.3);
+  --success: #3d6b4f;
+  --success-subtle: rgba(61, 107, 79, 0.1);
+  --success-line: rgba(61, 107, 79, 0.3);
 
-  /* scroll-world Theme Override */
-  --sw-bg: #090d11;
-  --sw-ink: #f8fafc;
-  --sw-ink-soft: #94a3b8;
-  --sw-accent: #10b981;
-  --sw-font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --sw-font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-/* scroll-world integration */
-.sw-topbar {
-  top: 64px !important;
-}
-.world-hero {
-  position: relative;
-  width: 100%;
-}
-
-  /* Radii (Disciplined, architectural — no bubbly AI slop) */
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
+  /* Radii */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
   --radius-pill: 999px;
 
-  /* Restrained, Layered Elevation */
-  --shadow-sm: 0 1px 2px rgba(18, 21, 23, 0.04);
-  --shadow-md: 0 4px 16px rgba(18, 21, 23, 0.06);
-  --shadow-pop: 0 16px 36px rgba(18, 21, 23, 0.12);
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(60, 52, 38, 0.05);
+  --shadow-md: 0 4px 16px rgba(60, 52, 38, 0.07);
+  --shadow-pop: 0 16px 36px rgba(60, 52, 38, 0.14);
 
-  /* Typography metrics */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  /* Typography */
+  --font-sans: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* scroll-world theme override */
+  --sw-bg: #f7f4ee;
+  --sw-ink: #29322c;
+  --sw-ink-soft: #5d655d;
+  --sw-accent: #48614f;
+  --sw-font-display: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sw-font-body: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ── Reset & Foundation ────────────────────────────────────────── */
@@ -84,9 +74,8 @@ body {
   color: var(--ink-primary);
   background-color: var(--bg-page);
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
-  font-feature-settings: "tnum" 1, "cv02" 1;
 }
 
 a {
@@ -121,7 +110,7 @@ button, .button {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(250, 250, 248, 0.94);
+  background: rgba(255, 254, 250, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
@@ -151,7 +140,7 @@ button, .button {
   display: grid;
   place-items: center;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--ink-inverse);
   border-radius: var(--radius-xs);
   font-size: 15px;
   font-weight: 600;
@@ -184,7 +173,7 @@ button, .button {
   left: 0;
   right: 0;
   height: 1.5px;
-  background: var(--ink-primary);
+  background: var(--accent);
 }
 
 .menu-button {
@@ -202,19 +191,19 @@ button, .button {
 h1, h2, h3, h4 {
   margin: 0;
   color: var(--ink-primary);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   line-height: 1.15;
   font-weight: 700;
 }
 
 h1 {
-  font-size: clamp(34px, 4.5vw, 56px);
+  font-size: clamp(34px, 4.5vw, 54px);
   line-height: 1.08;
   max-width: 22ch;
 }
 
 h2 {
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(24px, 3vw, 34px);
   line-height: 1.15;
 }
 
@@ -228,12 +217,11 @@ h3 {
   align-items: center;
   gap: 8px;
   margin: 0 0 12px;
-  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-secondary);
+  color: var(--accent);
 }
 
 .eyebrow::before {
@@ -245,14 +233,14 @@ h3 {
   border-radius: 50%;
 }
 
-/* ── Buttons (Precision, high-contrast, no pill-shaped jelly) ──── */
+/* ── Buttons ───────────────────────────────────────────────────── */
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 42px;
-  padding: 8px 18px;
+  min-height: 44px;
+  padding: 8px 20px;
   border: 1px solid var(--accent);
   border-radius: var(--radius-sm);
   background: var(--accent);
@@ -282,7 +270,7 @@ h3 {
 
 .button-secondary:hover {
   background: var(--bg-subtle);
-  border-color: var(--ink-primary);
+  border-color: var(--accent);
   color: var(--ink-primary);
 }
 
@@ -312,128 +300,13 @@ h3 {
 }
 
 .button-small {
-  min-height: 32px;
-  padding: 4px 12px;
+  min-height: 36px;
+  padding: 4px 14px;
   font-size: 13px;
   border-radius: var(--radius-xs);
 }
 
-/* ── Hero Section (Asymmetric Architectural Split) ─────────────── */
-.hero {
-  padding: 80px 0 72px;
-  background: var(--bg-page);
-  border-bottom: 1px solid var(--line);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  align-items: start;
-  gap: 56px;
-}
-
-.hero-copy > p:not(.eyebrow) {
-  max-width: 520px;
-  margin: 20px 0 32px;
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--ink-secondary);
-}
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.hero-art {
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-card {
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
-  background: var(--bg-surface);
-  padding: 28px;
-  box-shadow: var(--shadow-sm);
-}
-
-.desk-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 14px;
-  margin-bottom: 18px;
-}
-
-.desk-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--success);
-}
-
-.desk-badge::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-}
-
-.desk-schedule {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--ink-tertiary);
-}
-
-.desk-title {
-  margin: 0 0 8px;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.desk-lead {
-  margin: 0 0 20px;
-  font-size: 14px;
-  color: var(--ink-secondary);
-  line-height: 1.5;
-}
-
-.desk-metrics {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-
-.metric-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.metric-item strong {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ink-primary);
-  font-feature-settings: "tnum" 1;
-}
-
-.metric-item span {
-  font-size: 12px;
-  color: var(--ink-tertiary);
-}
-
-/* ── Content Sections & Swiss Grid ─────────────────────────────── */
+/* ── Content Sections ──────────────────────────────────────────── */
 .section {
   padding: 72px 0;
 }
@@ -467,10 +340,10 @@ h3 {
   gap: 16px;
 }
 
-/* ── Cards (Hairline precision, crisp typography) ──────────────── */
+/* ── Cards ─────────────────────────────────────────────────────── */
 .card {
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   background: var(--bg-surface);
   padding: 24px;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -480,7 +353,7 @@ h3 {
 
 .card:hover {
   border-color: var(--line-strong);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 .service-card {
@@ -506,10 +379,9 @@ h3 {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--ink-primary);
+  color: var(--accent);
 }
 
 .doctor-card {
@@ -523,12 +395,11 @@ h3 {
   flex: 0 0 60px;
   width: 60px;
   height: 60px;
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   background: var(--bg-subtle);
   border: 1px solid var(--line);
   display: grid;
   place-items: center;
-  font-family: var(--font-mono);
   font-size: 13px;
   font-weight: 700;
   color: var(--ink-secondary);
@@ -549,7 +420,6 @@ h3 {
 .doctor-card .eyebrow {
   margin: 0 0 6px;
   font-size: 10px;
-  color: var(--accent);
 }
 
 .doctor-card .eyebrow::before {
@@ -563,12 +433,12 @@ h3 {
   line-height: 1.45;
 }
 
-/* ── Form Card (Clinical Intake Form) ──────────────────────────── */
+/* ── Form Card ─────────────────────────────────────────────────── */
 .form-card {
   max-width: 720px;
   padding: 36px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
   background: var(--bg-surface);
   box-shadow: var(--shadow-sm);
 }
@@ -590,7 +460,7 @@ h3 {
 }
 
 label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--ink-primary);
@@ -603,13 +473,13 @@ input, select, textarea {
   border-radius: var(--radius-xs);
   background: var(--bg-surface);
   color: var(--ink-primary);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 input:hover, select:hover, textarea:hover {
-  border-color: var(--ink-secondary);
+  border-color: var(--ink-tertiary);
 }
 
 input:focus, select:focus, textarea:focus {
@@ -654,7 +524,7 @@ small[data-slots-hint] {
 .success-panel {
   padding: 24px;
   border: 1px solid var(--success-line);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   background: var(--success-subtle);
   color: var(--success);
 }
@@ -673,12 +543,12 @@ small[data-slots-hint] {
 .success-panel code {
   font-family: var(--font-mono);
   font-size: 12px;
-  background: rgba(27, 94, 61, 0.1);
+  background: rgba(61, 107, 79, 0.1);
   padding: 2px 6px;
   border-radius: var(--radius-xs);
 }
 
-/* ── FAQ (Swiss Accordion) ─────────────────────────────────────── */
+/* ── FAQ ───────────────────────────────────────────────────────── */
 .faq-list {
   max-width: 780px;
   margin: 0 auto;
@@ -709,8 +579,7 @@ small[data-slots-hint] {
 
 .faq-item summary::after {
   content: "+";
-  font-family: var(--font-mono);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   color: var(--ink-tertiary);
   transition: transform 0.15s ease;
@@ -718,7 +587,7 @@ small[data-slots-hint] {
 
 .faq-item[open] summary::after {
   content: "−";
-  color: var(--ink-primary);
+  color: var(--accent);
 }
 
 .faq-item p {
@@ -772,8 +641,8 @@ small[data-slots-hint] {
 .empty-state {
   grid-column: 1 / -1;
   padding: 36px 20px;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius-xs);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-sm);
   color: var(--ink-tertiary);
   text-align: center;
   font-size: 14px;
@@ -843,7 +712,7 @@ small[data-slots-hint] {
 .table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   background: var(--bg-surface);
 }
 
@@ -858,12 +727,11 @@ th, td {
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: middle;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 th {
-  font-family: var(--font-mono);
-  color: var(--ink-tertiary);
+  color: var(--ink-secondary);
   background: var(--bg-subtle);
   font-size: 11px;
   text-transform: uppercase;
@@ -884,14 +752,14 @@ tr:last-child td {
   width: auto;
   min-width: 120px;
   padding: 4px 8px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 [hidden] {
   display: none !important;
 }
 
-/* ── AI Clinical Assistant (Haute Minimalist Widget) ────────────── */
+/* ── AI Clinical Assistant ─────────────────────────────────────── */
 .ai-chat {
   position: fixed;
   right: 24px;
@@ -906,9 +774,9 @@ tr:last-child td {
 .ai-chat__fab {
   min-height: 44px;
   padding: 10px 18px;
-  border: 1px solid var(--ink-primary);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-pill);
-  background: var(--ink-primary);
+  background: var(--accent);
   color: var(--ink-inverse);
   font-size: 13px;
   font-weight: 600;
@@ -921,13 +789,13 @@ tr:last-child td {
 }
 
 .ai-chat__fab:hover {
-  background: #000000;
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
 .ai-chat__fab.is-open {
-  background: var(--ink-secondary);
-  border-color: var(--ink-secondary);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .ai-chat__fab svg {
@@ -941,8 +809,8 @@ tr:last-child td {
   max-height: min(540px, 75vh);
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
   background: var(--bg-surface);
   box-shadow: var(--shadow-pop);
   overflow: hidden;
@@ -971,7 +839,6 @@ tr:last-child td {
 }
 
 .ai-chat__hint {
-  font-family: var(--font-mono);
   font-size: 11px;
   color: var(--success);
   display: inline-flex;
@@ -988,8 +855,8 @@ tr:last-child td {
 }
 
 .ai-chat__close {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border: 1px solid var(--line);
   background: transparent;
   color: var(--ink-secondary);
@@ -1013,14 +880,14 @@ tr:last-child td {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: var(--bg-page);
+  background: var(--bg-subtle);
 }
 
 .ai-chat__msg {
   max-width: 86%;
   padding: 10px 14px;
-  border-radius: var(--radius-xs);
-  font-size: 13.5px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
   line-height: 1.5;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -1029,7 +896,7 @@ tr:last-child td {
 .ai-chat__msg--user {
   align-self: flex-end;
   color: var(--ink-inverse);
-  background: var(--ink-primary);
+  background: var(--accent);
 }
 
 .ai-chat__msg--assistant {
@@ -1043,9 +910,8 @@ tr:last-child td {
   margin: 0;
   padding: 6px 16px;
   color: var(--ink-tertiary);
-  font-family: var(--font-mono);
   font-size: 11px;
-  background: var(--bg-page);
+  background: var(--bg-subtle);
 }
 
 .ai-chat__form {
@@ -1060,9 +926,9 @@ tr:last-child td {
   flex: 1;
   min-width: 0;
   padding: 8px 10px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--line-strong);
   border-radius: var(--radius-xs);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .ai-chat__input:focus {
@@ -1071,10 +937,10 @@ tr:last-child td {
 }
 
 .ai-chat__send {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--accent);
-  border-radius: var(--radius-xs);
+  border-radius: var(--radius-sm);
   color: var(--ink-inverse);
   background: var(--accent);
   display: grid;
@@ -1091,12 +957,14 @@ tr:last-child td {
   cursor: not-allowed;
 }
 
+/* ── scroll-world integration ──────────────────────────────────── */
+.world-hero {
+  position: relative;
+  width: 100%;
+}
+
 /* ── Responsive Adaptations ────────────────────────────────────── */
 @media (max-width: 860px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
   .grid, .admin-forms {
     grid-template-columns: 1fr;
   }
@@ -1149,5 +1017,15 @@ tr:last-child td {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
