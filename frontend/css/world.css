@@ -28,6 +28,13 @@
     object-position: center !important;
   }
 
+  /* Preserve the full diagnostic-room composition on non-16:9 screens. */
+  .sw-scene:last-child .sw-scene__video,
+  .sw-scene:last-child .sw-scene__still {
+    object-fit: contain !important;
+    transform: none !important;
+  }
+
   .sw-copylayer::before {
     width: 50% !important;
     background: linear-gradient(90deg, var(--sw-bg) 0%, color-mix(in srgb, var(--sw-bg) 82%, transparent) 62%, transparent 100%) !important;
