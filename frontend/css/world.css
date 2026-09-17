@@ -9,8 +9,58 @@
   width: 100%;
 }
 
-.sw-topbar {
-  top: 64px !important;
+/* UI Cleanup: Hide particles, route navigation, topbar, and hints */
+.sw-particles,
+.sw-route,
+.sw-topbar,
+.sw-hint,
+.sw-topbar__hint {
+  display: none !important;
+}
+
+/* ── Desktop Scoped Portrait Media & Left Copy ( > 860px ) ──────────── */
+@media (min-width: 861px) {
+  .sw-scene__video,
+  .sw-scene__still {
+    left: 50% !important;
+    right: 0 !important;
+    width: 50% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  .sw-copylayer::before {
+    width: 50% !important;
+  }
+}
+
+/* ── Flow Transition Overlay ────────────────────────────────────────── */
+.flow-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: #090d11;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.flow-overlay__heading {
+  font-family: var(--sw-font-display, ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  max-width: 700px;
+  margin: 0;
+  color: #ffffff;
 }
 
 /* ── Mobile Haute Couture (< 860px) ─────────────────────────────────── */

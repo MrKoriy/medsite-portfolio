@@ -4,86 +4,109 @@
   const worldEl = document.getElementById("world");
   if (!worldEl || typeof window.mountScrollWorld !== "function") return;
 
-  const isMobile = window.innerWidth <= 860;
-
   window.mountScrollWorld(worldEl, {
     brand: null,
     cta: null,
-    hint: isMobile ? "проведите для обзора" : "прокрутите для обзора клиники",
-    diveScroll: isMobile ? 0.7 : 1.1,
-    connScroll: isMobile ? 0.5 : 0.7,
-    atmosphere: true,
+    hint: null,
+    crossfade: 0.08,
+    atmosphere: false,
+    nav: false,
+    connectors: [],
     sections: [
       {
-        id: "triage",
-        label: "Приёмное отделение",
-        still: "assets/world/triage.webp",
-        clip: "assets/world/triage.mp4",
+        id: "lobby",
+        label: "Пространство для заботы",
+        still: "assets/world/clinic-lobby-demo.webp",
+        clip: "assets/world/clinic-lobby-demo.mp4",
         accent: "#11382d",
-        scroll: 1.3,
-        linger: 0.35,
-        eyebrow: "ЛИЦЕНЗИЯ № ЛО-77-01-021480 · ДОКАЗАТЕЛЬНАЯ МЕДИЦИНА",
-        title: "Приёмное отделение и маршрутизация",
-        body: "Оценка состояния за 3 минуты. Персональный медицинский координатор организует приём без очередей и задержек.",
-        tags: ["Экспресс-триаж", "Электронная регистрация", "Приём Пн–Сб 08:30–20:30"]
+        scroll: 2.5,
+        linger: 0,
+        eyebrow: "ПОРТФОЛИО · ВИДЕОКОНЦЕПТ",
+        title: "Пространство для заботы",
+        body: "Прокрутите вниз для обзора пространств клиники и ознакомления с концептом медицинской помощи."
       },
       {
-        id: "diagnostics",
-        label: "Лаборатория и МРТ",
-        still: "assets/world/diagnostics.webp",
-        clip: "assets/world/diagnostics.mp4",
+        id: "flow",
+        label: "Консультация и диагностика",
+        still: "assets/world/clinic-flow-demo.webp",
+        clip: "assets/world/clinic-flow-demo.mp4",
         accent: "#0e4a42",
-        scroll: 1.3,
-        linger: 0.35,
-        eyebrow: "ВЫСОКОТОЧНЫЙ СКРИНИНГ",
-        title: "Лабораторный комплекс и томография",
-        body: "Цифровой МРТ-томограф 1.5 Тесла с пониженным уровнем акустического шума. Анализы крови и C-реактивные тесты день в день.",
-        tags: ["МРТ Siemens Magnetom", "Срочные экспресс-панели", "Цифровой архив DICOM"]
-      },
-      {
-        id: "consulting",
-        label: "Консультативное крыло",
-        still: "assets/world/consulting.webp",
-        clip: "assets/world/consulting.mp4",
-        accent: "#1a4731",
-        scroll: 1.3,
-        linger: 0.35,
-        eyebrow: "МЕЖДУНАРОДНЫЕ КЛИНИЧЕСКИЕ ПРОТОКОЛЫ",
-        title: "Врачи доказательной практики",
-        body: "Длительность консультаций от 30 до 60 минут. Никаких гомеопатических средств, БАДов и лишних анализов — только верифицированные методы.",
-        tags: ["Приём 30–60 минут", "Терапия и Неврология", "Второе экспертное мнение"]
-      },
-      {
-        id: "day_hospital",
-        label: "Дневной стационар",
-        still: "assets/world/day_hospital.webp",
-        clip: "assets/world/day_hospital.mp4",
-        accent: "#1e3d36",
-        scroll: 1.3,
-        linger: 0.35,
-        eyebrow: "МАЛОИНВАЗИВНЫЕ МЕТОДИКИ",
-        title: "Дневной стационар и реабилитация",
-        body: "Светлые индивидуальные палаты с постоянным кардиомониторингом. Восстановительная терапия под непрерывным контролем ведущего врача.",
-        tags: ["Персональный бокс", "Инфузионная терапия", "Контроль гемодинамики"]
-      },
-      {
-        id: "digital_care",
-        label: "Запись на приём",
-        still: "assets/world/digital_care.webp",
-        clip: "assets/world/digital_care.mp4",
-        accent: "#11382d",
-        scroll: 1.4,
-        linger: 0.45,
-        eyebrow: "ОНЛАЙН-РАСПИСАНИЕ",
-        title: "Выберите специалиста и удобное время",
-        body: "Мгновенное подтверждение без телефонных звонков. Электронная медкарта и доступ к протоколам осмотра сразу после приёма.",
-        tags: ["Запись 24/7", "Связь с врачом", "Электронная карта"],
+        scroll: 2.5,
+        linger: 0,
+        eyebrow: "КЛИНИЧЕСКИЙ МАРШРУТ",
+        title: "Консультация и диагностика",
+        body: "Персональный контроль здоровья, технологичная диагностика и верифицированные стандарты лечения.",
         cta: {
-          primary: { label: "Выбрать врача и время", href: "#appointment" },
-          secondary: { label: "Прейскурант услуг", href: "#services" }
+          primary: { label: "Записаться на приём", href: "#appointment" }
         }
       }
-    ],
-    connectors: []
+    ]
   });
+
+  // Flow Overlay Transition
+  let overlayEl = worldEl.querySelector(".flow-overlay");
+  if (!overlayEl) {
+    overlayEl = document.createElement("div");
+    overlayEl.className = "flow-overlay";
+    overlayEl.setAttribute("aria-hidden", "true");
+
+    const heading = document.createElement("h2");
+    heading.className = "flow-overlay__heading";
+    heading.textContent = "От знакомства к диагностике";
+    overlayEl.appendChild(heading);
+
+    worldEl.appendChild(overlayEl);
+  }
+
+  const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function updateOverlay() {
+    if (reduceMotionQuery.matches) {
+      overlayEl.style.opacity = "0";
+      overlayEl.style.visibility = "hidden";
+      overlayEl.style.display = "none";
+      overlayEl.setAttribute("aria-hidden", "true");
+      return;
+    }
+
+    const vh = window.innerHeight || 1;
+    const y = window.scrollY || 0;
+    const dist = Math.abs(y / vh - 2.5);
+
+    let opacity = 0;
+    if (dist <= 0.12) {
+      opacity = 1;
+    } else if (dist >= 0.55) {
+      opacity = 0;
+    } else {
+      opacity = (0.55 - dist) / (0.55 - 0.12);
+    }
+
+    if (opacity < 0.001) {
+      overlayEl.style.opacity = "0";
+      overlayEl.style.visibility = "hidden";
+      overlayEl.style.display = "none";
+      overlayEl.setAttribute("aria-hidden", "true");
+    } else {
+      overlayEl.style.display = "flex";
+      overlayEl.style.visibility = "visible";
+      overlayEl.style.opacity = opacity.toFixed(4);
+      overlayEl.setAttribute("aria-hidden", "false");
+    }
+  }
+
+  let ticking = false;
+  function requestOverlayUpdate() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        ticking = false;
+        updateOverlay();
+      });
+    }
+  }
+
+  window.addEventListener("scroll", requestOverlayUpdate, { passive: true });
+  window.addEventListener("resize", requestOverlayUpdate, { passive: true });
+  updateOverlay();
 })();
