@@ -232,7 +232,8 @@ function mountScrollWorld(container, config) {
       s.target = s.linger ? lingerEase(local, s.linger) : local;
       let outside = 0;
       if (y < s.start) outside = s.start - y; else if (y > s.end) outside = y - s.end;
-      const op = smooth(1 - outside / fade);
+      // Keep the final frame under its copy; the stage handles the shared exit fade.
+      const op = (i === NSEG - 1 && y >= s.end) ? 1 : smooth(1 - outside / fade);
       s.el.style.opacity = op; s.visible = op > 0.001;
       s.el.style.zIndex = (i === ci) ? '120' : String(100 + Math.round(op * 10));
       if (!s.hasClip || !s.ready) {
@@ -281,6 +282,8 @@ function mountScrollWorld(container, config) {
       copylayer.style.pointerEvents = exitFade > 0.01 ? 'auto' : 'none';
       if (sky) sky.style.opacity = exitFade;
     } else {
+      stage.style.opacity = '';
+      copylayer.style.pointerEvents = '';
       route.style.opacity = '';
       topbar.style.opacity = '';
       copylayer.style.opacity = '';
