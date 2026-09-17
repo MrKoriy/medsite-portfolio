@@ -148,12 +148,6 @@
     font-size: 0.85rem !important;
   }
 
-  .sw-btn--primary {
-    background: var(--accent, #48614f) !important;
-    color: #fffefa !important;
-    border-color: var(--accent, #48614f) !important;
-  }
-
   .sw-btn--ghost {
     color: var(--ink-primary, #29322c) !important;
     border-color: var(--line-strong, #d4ccbb) !important;
@@ -163,4 +157,10 @@
   .sw-route {
     display: none !important;
   }
+}
+
+.sw-btn--primary {
+  background: #48614f !important;
+  color: #fffefa !important;
+  border-color: #48614f !important;
 }
