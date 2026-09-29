@@ -11,3 +11,5 @@ preview_shot.png
 
 # local QA artifacts (screenshots, playwright checks)
 media-review/
+.vercel
+.env*
