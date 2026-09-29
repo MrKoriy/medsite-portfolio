@@ -1,6 +1,10 @@
 import os
 from collections.abc import Generator
 
+# Tests exercise the API against an empty catalogue; the startup seed ships in
+# production only (see app/seed.py).
+os.environ["MEDSITE_SEED"] = "0"
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine

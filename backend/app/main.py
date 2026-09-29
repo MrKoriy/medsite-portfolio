@@ -13,6 +13,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from .auth import ensure_admin
 from .database import Base, SessionLocal, engine
 from .routers import admin, appointments, assistant, doctors, faq, health, services
+from .seed import seed_catalogue
 
 
 class PhoneMaskFilter(logging.Filter):
@@ -30,6 +31,7 @@ logging.getLogger("app").addFilter(PhoneMaskFilter())
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
     with SessionLocal() as db:
+        seed_catalogue(db)
         ensure_admin(db)
     yield
 

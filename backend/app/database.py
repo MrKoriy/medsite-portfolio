@@ -1,4 +1,5 @@
 import os
+import shutil
 from collections.abc import Generator
 from pathlib import Path
 
@@ -6,7 +7,20 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{Path(__file__).resolve().parents[1] / 'medsite.db'}")
+BUNDLED_DB = Path(__file__).resolve().parents[1] / "medsite.db"
+
+
+def default_sqlite_path() -> Path:
+    """SQLite needs a writable directory; a serverless bundle is mounted read-only."""
+    if not os.getenv("VERCEL") and os.access(BUNDLED_DB.parent, os.W_OK):
+        return BUNDLED_DB
+    runtime_db = Path(os.getenv("TMPDIR", "/tmp")) / "medsite.db"
+    if not runtime_db.exists() and BUNDLED_DB.exists():
+        shutil.copyfile(BUNDLED_DB, runtime_db)
+    return runtime_db
+
+
+DATABASE_URL = os.getenv("DATABASE_URL") or f"sqlite:///{default_sqlite_path()}"
 
 
 class Base(DeclarativeBase):
