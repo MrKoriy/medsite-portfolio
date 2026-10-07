@@ -1,59 +1,60 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   МедСфера · Warm Editorial Light Design System
-   Palette derived from the clinic video assets (warm ivory, oak, sage)
+   МедСфера · High-End Biotech & Longevity Editorial Design System
+   Inspired by Garri Zmudze: Studio Grey, Clean Grotesque + Editorial Serif Italic
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Surfaces & Canvas */
-  --bg-page: #f7f4ee;
-  --bg-surface: #fffefa;
-  --bg-subtle: #f1ede4;
-  --bg-muted: #e9e4d8;
+  /* Surfaces & Canvas — Pale Studio Grey */
+  --bg-page: #ECECEC;
+  --bg-surface: #F5F5F5;
+  --bg-subtle: #E3E3E5;
+  --bg-muted: #D8D8DC;
 
   /* Typography & Ink */
-  --ink-primary: #29322c;
-  --ink-secondary: #5d655d;
-  --ink-tertiary: #8a9088;
-  --ink-inverse: #fffefa;
+  --ink-primary: #121212;
+  --ink-secondary: #58585C;
+  --ink-tertiary: #888890;
+  --ink-inverse: #FFFFFF;
 
-  /* Brand / Clinical Accent (Sage) */
-  --accent: #48614f;
-  --accent-hover: #3a4e3f;
-  --accent-subtle: rgba(72, 97, 79, 0.08);
-  --accent-line: rgba(72, 97, 79, 0.3);
+  /* Brand / Clinical Accent (Monochrome Luxury) */
+  --accent: #111111;
+  --accent-hover: #2B2B2B;
+  --accent-subtle: rgba(18, 18, 18, 0.05);
+  --accent-line: rgba(18, 18, 18, 0.16);
 
   /* Structural Hairlines */
-  --line: #e5dfd2;
-  --line-strong: #d4ccbb;
+  --line: #DADAE0;
+  --line-strong: #C4C4CA;
 
   /* Functional & Status */
-  --danger: #b3423f;
-  --danger-subtle: rgba(179, 66, 63, 0.08);
-  --danger-line: rgba(179, 66, 63, 0.3);
-  --success: #3d6b4f;
-  --success-subtle: rgba(61, 107, 79, 0.1);
-  --success-line: rgba(61, 107, 79, 0.3);
+  --danger: #B33939;
+  --danger-subtle: rgba(179, 57, 57, 0.08);
+  --danger-line: rgba(179, 57, 57, 0.25);
+  --success: #2E6B4D;
+  --success-subtle: rgba(46, 107, 77, 0.08);
+  --success-line: rgba(46, 107, 77, 0.25);
 
   /* Radii */
-  --radius-xs: 3px;
-  --radius-sm: 5px;
-  --radius-md: 8px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
   --radius-pill: 999px;
 
   /* Elevation */
-  --shadow-sm: 0 1px 2px rgba(60, 52, 38, 0.05);
-  --shadow-md: 0 4px 16px rgba(60, 52, 38, 0.07);
-  --shadow-pop: 0 16px 36px rgba(60, 52, 38, 0.14);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-pop: 0 16px 40px rgba(0, 0, 0, 0.08);
 
   /* Typography */
   --font-sans: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif-italic: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   /* scroll-world theme override */
-  --sw-bg: #f7f4ee;
-  --sw-ink: #29322c;
-  --sw-ink-soft: #5d655d;
-  --sw-accent: #48614f;
+  --sw-bg: #ECECEC;
+  --sw-ink: #121212;
+  --sw-ink-soft: #58585C;
+  --sw-accent: #111111;
   --sw-font-display: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
   --sw-font-body: 'Golos Text', -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -74,7 +75,7 @@ body {
   color: var(--ink-primary);
   background-color: var(--bg-page);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -110,9 +111,9 @@ button, .button {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 254, 250, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(236, 236, 236, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
 
@@ -127,23 +128,29 @@ button, .button {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -0.02em;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
   color: var(--ink-primary);
 }
 
+.brand em {
+  font-family: var(--font-serif-italic);
+  font-style: italic;
+  font-weight: 400;
+}
+
 .brand-mark {
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
   display: grid;
   place-items: center;
-  background: var(--accent);
-  color: var(--ink-inverse);
+  background: var(--ink-primary);
+  color: #FFFFFF;
   border-radius: var(--radius-xs);
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -151,14 +158,17 @@ button, .button {
   display: flex;
   align-items: center;
   gap: 28px;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--ink-secondary);
 }
 
 .nav a {
   position: relative;
   padding: 4px 0;
+  transition: color 0.15s ease;
 }
 
 .nav a:hover,
@@ -173,7 +183,24 @@ button, .button {
   left: 0;
   right: 0;
   height: 1.5px;
-  background: var(--accent);
+  background: var(--ink-primary);
+}
+
+.nav .button-small {
+  padding: 6px 16px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink-primary);
+  background: transparent;
+  color: var(--ink-primary);
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+}
+
+.nav .button-small:hover {
+  background: var(--ink-primary);
+  color: #FFFFFF;
 }
 
 .menu-button {
@@ -193,7 +220,16 @@ h1, h2, h3, h4 {
   color: var(--ink-primary);
   letter-spacing: -0.025em;
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: 500;
+}
+
+h1 em, h2 em, h3 em, h4 em,
+h1 i, h2 i, h3 i, h4 i,
+.serif-italic {
+  font-family: var(--font-serif-italic);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: normal;
 }
 
 h1 {
@@ -219,18 +255,58 @@ h3 {
   margin: 0 0 12px;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--ink-secondary);
 }
 
 .eyebrow::before {
   content: "";
   display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
+  width: 5px;
+  height: 5px;
+  background: var(--ink-primary);
   border-radius: 50%;
+}
+
+/* ── Partners & Accreditation Strip (Featured in) ──────────────── */
+.partners-strip {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-page);
+}
+
+.partners-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.partners-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+
+.partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-primary);
+}
+
+.partners-dot {
+  color: var(--ink-tertiary);
+  user-select: none;
 }
 
 /* ── Buttons ───────────────────────────────────────────────────── */
@@ -239,22 +315,24 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 8px 20px;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-sm);
-  background: var(--accent);
-  color: var(--ink-inverse);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  min-height: 42px;
+  padding: 8px 22px;
+  border: 1px solid var(--ink-primary);
+  border-radius: var(--radius-pill);
+  background: var(--ink-primary);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .button:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
+  color: #FFFFFF;
 }
 
 .button:active {
@@ -262,15 +340,15 @@ h3 {
 }
 
 .button-secondary {
-  background: var(--bg-surface);
+  background: transparent;
   color: var(--ink-primary);
   border-color: var(--line-strong);
   box-shadow: none;
 }
 
 .button-secondary:hover {
-  background: var(--bg-subtle);
-  border-color: var(--accent);
+  background: rgba(18, 18, 18, 0.04);
+  border-color: var(--ink-primary);
   color: var(--ink-primary);
 }
 
@@ -395,7 +473,7 @@ h3 {
   flex: 0 0 60px;
   width: 60px;
   height: 60px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   background: var(--bg-subtle);
   border: 1px solid var(--line);
   display: grid;

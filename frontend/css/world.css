@@ -1,5 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   scroll-world · Warm Editorial Overrides
+   scroll-world · High-End Biotech & Longevity Editorial Overrides
+   Inspired by Garri Zmudze: Studio Grey, Clean Grotesque + Editorial Serif Italic
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* Integration with Site Header */
@@ -36,8 +37,8 @@
   }
 
   .sw-copylayer::before {
-    width: 50% !important;
-    background: linear-gradient(90deg, var(--sw-bg) 0%, color-mix(in srgb, var(--sw-bg) 82%, transparent) 62%, transparent 100%) !important;
+    width: 58% !important;
+    background: linear-gradient(90deg, var(--sw-bg, #ECECEC) 0%, color-mix(in srgb, var(--sw-bg, #ECECEC) 88%, transparent) 55%, transparent 100%) !important;
   }
 
   .sw-copy {
@@ -45,6 +46,32 @@
     box-shadow: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    max-width: 540px !important;
+  }
+
+  .sw-copy__title {
+    font-size: clamp(2.4rem, 4.4vw, 3.8rem) !important;
+    font-weight: 500 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.025em !important;
+    color: var(--ink-primary, #121212) !important;
+    text-shadow: none !important;
+  }
+
+  .sw-copy__title em,
+  .sw-copy__body em {
+    font-family: var(--font-serif-italic, 'Playfair Display', serif) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    letter-spacing: normal !important;
+  }
+
+  .sw-copy__body {
+    font-size: 1.06rem !important;
+    line-height: 1.6 !important;
+    color: var(--ink-secondary, #58585C) !important;
+    text-shadow: none !important;
+    max-width: 44ch !important;
   }
 }
 
@@ -54,8 +81,8 @@
   inset: 0;
   z-index: 40;
   pointer-events: none;
-  background: var(--bg-page, #f7f4ee);
-  color: var(--ink-primary, #29322c);
+  background: var(--bg-page, #ECECEC);
+  color: var(--ink-primary, #121212);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,13 +95,19 @@
 
 .flow-overlay__heading {
   font-family: var(--sw-font-display, 'Golos Text', system-ui, sans-serif);
-  font-size: clamp(1.7rem, 4vw, 3rem);
-  font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
-  max-width: 640px;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  max-width: 700px;
   margin: 0;
-  color: var(--ink-primary, #29322c);
+  color: var(--ink-primary, #121212);
+}
+
+.flow-overlay__heading em {
+  font-family: var(--font-serif-italic, 'Playfair Display', serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
 /* ── Mobile Editorial Copy ( < 860px ) ──────────────────────────────── */
@@ -84,44 +117,55 @@
   }
 
   .sw-copy {
-    left: 16px !important;
-    right: 16px !important;
-    bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+    left: 14px !important;
+    right: 14px !important;
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
     width: auto !important;
     max-width: none !important;
-    background: rgba(255, 254, 250, 0.96) !important;
-    border: 1px solid var(--line, #e5dfd2) !important;
-    border-radius: var(--radius-md, 8px) !important;
+    background: rgba(246, 246, 246, 0.96) !important;
+    border: 1px solid var(--line, #DADAE0) !important;
+    border-radius: var(--radius-md, 6px) !important;
     padding: 16px 18px !important;
-    box-shadow: 0 12px 32px rgba(60, 52, 38, 0.16) !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
   }
 
   .sw-copy__num {
-    font-size: 0.7rem !important;
-    color: var(--accent, #48614f) !important;
+    font-size: 0.68rem !important;
+    color: var(--ink-tertiary, #888890) !important;
+    letter-spacing: 0.12em !important;
   }
 
   .sw-copy__eyebrow {
     margin-top: 6px !important;
     font-size: 0.68rem !important;
-    letter-spacing: 0.12em !important;
-    color: var(--accent, #48614f) !important;
+    letter-spacing: 0.14em !important;
+    font-weight: 600 !important;
+    color: var(--ink-secondary, #58585C) !important;
+    text-transform: uppercase !important;
   }
 
   .sw-copy__title {
-    font-size: 1.26rem !important;
+    font-size: 1.28rem !important;
     line-height: 1.25 !important;
     margin: 4px 0 0 !important;
-    color: var(--ink-primary, #29322c) !important;
+    font-weight: 500 !important;
+    color: var(--ink-primary, #121212) !important;
+  }
+
+  .sw-copy__title em,
+  .sw-copy__body em {
+    font-family: var(--font-serif-italic, 'Playfair Display', serif) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
   }
 
   .sw-copy__body {
-    font-size: 0.87rem !important;
+    font-size: 0.88rem !important;
     line-height: 1.45 !important;
     margin-top: 6px !important;
-    color: var(--ink-secondary, #5d655d) !important;
+    color: var(--ink-secondary, #58585C) !important;
   }
 
   .sw-copy__tags {
@@ -130,12 +174,12 @@
   }
 
   .sw-copy__tags li {
-    font-size: 0.72rem !important;
+    font-size: 0.7rem !important;
     padding: 3px 10px !important;
     border-radius: 999px !important;
-    background: var(--accent-subtle, rgba(72, 97, 79, 0.08)) !important;
-    color: var(--accent, #48614f) !important;
-    border: 1px solid var(--accent-line, rgba(72, 97, 79, 0.3)) !important;
+    background: var(--bg-surface, #F5F5F5) !important;
+    color: var(--ink-secondary, #58585C) !important;
+    border: 1px solid var(--line, #DADAE0) !important;
   }
 
   .sw-copy__cta {
@@ -145,12 +189,14 @@
 
   .sw-btn {
     padding: 10px 18px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
   }
 
   .sw-btn--ghost {
-    color: var(--ink-primary, #29322c) !important;
-    border-color: var(--line-strong, #d4ccbb) !important;
+    color: var(--ink-primary, #121212) !important;
+    border-color: var(--line-strong, #C4C4CA) !important;
     background: transparent !important;
   }
 
@@ -160,7 +206,15 @@
 }
 
 .sw-btn--primary {
-  background: #48614f !important;
-  color: #fffefa !important;
-  border-color: #48614f !important;
+  background: #111111 !important;
+  color: #FFFFFF !important;
+  border-color: #111111 !important;
+  border-radius: 999px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.06em !important;
+}
+
+.sw-btn--primary:hover {
+  background: #2B2B2B !important;
+  border-color: #2B2B2B !important;
 }

@@ -15,33 +15,33 @@
     sections: [
       {
         id: "lobby",
-        label: "Пространство для заботы",
+        label: "Институт долголетия",
         still: "assets/world/clinic-lobby-desktop.webp",
         clip: "assets/world/clinic-lobby-desktop.mp4",
         stillMobile: "assets/world/clinic-lobby-demo.webp",
         clipMobile: "assets/world/clinic-lobby-demo.mp4",
-        accent: "#11382d",
+        accent: "#111111",
         scroll: 2.5,
         linger: 0,
-        eyebrow: "ПОРТФОЛИО · ВИДЕОКОНЦЕПТ",
-        title: "Пространство для заботы",
-        body: "Прокрутите вниз для обзора пространств клиники и ознакомления с концептом медицинской помощи."
+        eyebrow: "BIOTECH & LONGEVITY MEDICINE",
+        title: "Объединяя биотехнологии, диагностику и превенцию в *современное здоровье*",
+        body: "Клинический институт и центр превентивной медицины. Персональные протоколы управления *здоровьем* и биомаркерами."
       },
       {
         id: "flow",
-        label: "Консультация и диагностика",
+        label: "Диагностика и протоколы",
         still: "assets/world/clinic-flow-desktop.webp",
         clip: "assets/world/clinic-flow-desktop.mp4",
         stillMobile: "assets/world/clinic-flow-demo.webp",
         clipMobile: "assets/world/clinic-flow-demo.mp4",
-        accent: "#0e4a42",
+        accent: "#111111",
         scroll: 2.5,
         linger: 0,
         eyebrow: "КЛИНИЧЕСКИЙ МАРШРУТ",
-        title: "Консультация и диагностика",
-        body: "Персональный контроль здоровья, технологичная диагностика и верифицированные стандарты лечения.",
+        title: "Передовая диагностика и стандарты доказательного *лечения*",
+        body: "МРТ экспертного класса Siemens 1.5T, экспресс-панели биомаркеров и персональное ведение профильными врачами.",
         cta: {
-          primary: { label: "Записаться на приём", href: "#appointment" }
+          primary: { label: "Записаться на консультацию", href: "#appointment" }
         }
       }
     ]
@@ -56,7 +56,7 @@
 
     const heading = document.createElement("h2");
     heading.className = "flow-overlay__heading";
-    heading.textContent = "От знакомства к диагностике";
+    heading.innerHTML = "От знакомства к <em>диагностике</em>";
     overlayEl.appendChild(heading);
 
     worldEl.appendChild(overlayEl);

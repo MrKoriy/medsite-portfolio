@@ -147,14 +147,15 @@ function mountScrollWorld(container, config) {
   });
 
   // per-section copy / route / nav
+  const formatCopy = (str) => (!str ? '' : esc(str).replace(/\*(.*?)\*/g, '<em>$1</em>'));
   const copies = [], dots = [];
   SECTIONS.forEach((s, i) => {
     const c = el('article', 'sw-copy'); c.style.setProperty('--sw-accent', s.accent || '');
     c.innerHTML =
       `<span class="sw-copy__num">${pad(i + 1)} / ${pad(N)}</span>` +
-      (s.eyebrow ? `<span class="sw-copy__eyebrow">${esc(s.eyebrow)}</span>` : '') +
-      (s.title ? `<h2 class="sw-copy__title">${esc(s.title)}</h2>` : '') +
-      (s.body ? `<p class="sw-copy__body">${esc(s.body)}</p>` : '') +
+      (s.eyebrow ? `<span class="sw-copy__eyebrow">${formatCopy(s.eyebrow)}</span>` : '') +
+      (s.title ? `<h2 class="sw-copy__title">${formatCopy(s.title)}</h2>` : '') +
+      (s.body ? `<p class="sw-copy__body">${formatCopy(s.body)}</p>` : '') +
       (s.tags && s.tags.length ? `<ul class="sw-copy__tags">${s.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : '') +
       (s.cta ? `<div class="sw-copy__cta">${ctaBtns(s.cta)}</div>` : '');
     copylayer.appendChild(c); copies.push(c);
