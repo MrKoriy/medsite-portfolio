@@ -202,21 +202,44 @@ function mountScrollWorld(container, config) {
     s.loading = true;
     // Serve the lighter mobile encode on phones when one was provided.
     const url = (isMobile() && s.clipM) ? s.clipM : s.clip;
-    fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error('404')))
+
+    const setupVideoElement = (srcUrl) => {
+      const v = document.createElement('video');
+      v.className = 'sw-scene__video';
+      v.muted = true; v.playsInline = true; v.preload = 'auto';
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      v.src = srcUrl;
+
+      const reveal = () => { s.el.classList.add('has-clip'); };
+      v.addEventListener('loadedmetadata', () => { s.ready = true; read(); });
+      v.addEventListener('seeked', reveal, { once: true });
+      v.addEventListener('timeupdate', reveal, { once: true });
+      v.addEventListener('loadeddata', () => {
+        try { v.pause(); } catch (e) {}
+        primeAllVideos();
+      });
+
+      s.el.appendChild(v);
+      s.video = v;
+      s.hasClip = true;
+      primeAllVideos();
+    };
+
+    fetch(url)
+      .then(r => r.ok ? r.blob() : Promise.reject(new Error('fetch failed')))
       .then(blob => {
-        const v = document.createElement('video');
-        v.className = 'sw-scene__video';
-        v.muted = true; v.playsInline = true; v.preload = 'auto';
-        v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-        v.src = URL.createObjectURL(blob);
-        v.addEventListener('loadedmetadata', () => { s.ready = true; read(); });
-        // Reveal the video (hide the still poster) only once a real frame has
-        // painted — on iOS a seeked-but-never-played muted video stays blank, so
-        // hiding the still on metadata alone would flash an empty scene.
-        v.addEventListener('seeked', () => { s.el.classList.add('has-clip'); }, { once: true });
-        v.addEventListener('loadeddata', () => { try { v.pause(); } catch (e) {} if (userReady) primeVideo(v); });
-        s.el.appendChild(v); s.video = v; s.hasClip = true;
-      }).catch(() => { s.loading = false; });
+        setupVideoElement(URL.createObjectURL(blob));
+      })
+      .catch(() => {
+        // Fallback to direct video URL with HTTP range requests if blob fetch fails
+        try {
+          setupVideoElement(url);
+        } catch (e) {
+          s.loading = false;
+        }
+      });
   }
 
   function read() {
@@ -293,44 +316,66 @@ function mountScrollWorld(container, config) {
   }
 
   function raf() {
-    const eps = isMobile() ? 0.02 : 0.008;   // coarser seek step on phones = fewer decodes
+    const eps = isMobile() ? 0.015 : 0.008;   // seek step tolerance
+    const lerpRate = reduce ? 1 : (isMobile() ? 0.45 : 0.18);
+    const now = performance.now();
     for (let i = 0; i < NSEG; i++) {
       const s = SEGMENTS[i];
       if (!s.hasClip || !s.ready || !s.video) continue;
-      // Never queue a seek while the decoder is still resolving the last one.
-      // On phones a fast flick would otherwise pile up seeks and freeze the clip;
-      // cur keeps lerping, so we snap to the latest target the moment it's free.
-      if (s.video.seeking) continue;
       if (!s.visible && Math.abs(s.cur - s.target) < 0.002) continue;
-      s.cur += (s.target - s.cur) * (reduce ? 1 : 0.18);
+
+      // cur keeps lerping EVERY frame so target stays tracked in real-time
+      s.cur += (s.target - s.cur) * lerpRate;
+
+      // Never queue a seek while the decoder is still resolving the last one,
+      // but timeout after 250ms so a dropped/stuck seeked event never freezes the video.
+      if (s.video.seeking && (now - (s.lastSeekTime || 0) < 250)) continue;
+
       const dur = s.video.duration || 1;
       const t = clamp(s.cur, 0, 0.999) * dur;
-      if (Math.abs(s.video.currentTime - t) > eps) { try { s.video.currentTime = t; } catch (e) {} }
+      if (Math.abs(s.video.currentTime - t) > eps) {
+        try {
+          s.video.currentTime = t;
+          s.lastSeekTime = now;
+        } catch (e) {}
+      }
     }
     requestAnimationFrame(raf);
   }
 
-  // iOS needs a user gesture before a muted video will decode/paint reliably. On the
-  // first touch we prime every loaded clip (muted play→pause) so the first seek is
-  // instant instead of showing a blank frame. `userReady` also makes freshly-loaded
-  // clips prime themselves (see loadClip).
-  let userReady = false;
-  function primeVideo(v) {
-    if (!isMobile() || !v) return;
-    try { const p = v.play(); if (p && p.then) p.then(() => { try { v.pause(); } catch (e) {} }).catch(() => {}); }
-    catch (e) {}
+  // iOS needs a user gesture before a muted video will decode/paint reliably.
+  // We prime every loaded clip (muted play→pause) on touch / pointer events
+  // continuously until all videos are unlocked, so async-loaded videos are primed
+  // on subsequent scrolls rather than missing a one-time gesture window.
+  function primeAllVideos() {
+    SEGMENTS.forEach(s => {
+      if (s.video && !s.primed) {
+        try {
+          const p = s.video.play();
+          if (p && p.then) {
+            p.then(() => {
+              try { s.video.pause(); } catch (e) {}
+              s.primed = true;
+            }).catch(() => {});
+          } else {
+            try { s.video.pause(); } catch (e) {}
+            s.primed = true;
+          }
+        } catch (e) {}
+      }
+    });
   }
-  function onFirstGesture() {
-    if (userReady) return;
-    userReady = true;
-    SEGMENTS.forEach(s => primeVideo(s.video));
-  }
-  window.addEventListener('pointerdown', onFirstGesture, { once: true, passive: true });
-  window.addEventListener('touchstart', onFirstGesture, { once: true, passive: true });
+
+  window.addEventListener('pointerdown', primeAllVideos, { passive: true });
+  window.addEventListener('touchstart', primeAllVideos, { passive: true });
+  window.addEventListener('touchmove', primeAllVideos, { passive: true });
 
   // Particles are a per-frame cost we can't afford alongside video scrubbing on a phone.
   seedParticles(particles, reduce || coarse);
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(read); } }, { passive: true });
+  window.addEventListener('scroll', () => {
+    primeAllVideos();
+    if (!ticking) { ticking = true; requestAnimationFrame(read); }
+  }, { passive: true });
   // Mobile browsers fire `resize` every time the URL bar slides in/out. Re-running
   // layout() there rebuilds the track height and yanks the scroll position, so on
   // touch we ignore height-only changes and only relayout when the width actually
@@ -344,6 +389,11 @@ function mountScrollWorld(container, config) {
   window.addEventListener('orientationchange', layout);
   window.addEventListener('load', layout);
   layout();
+  // Preload initial segment immediately, and queue subsequent segments after idle/delay
+  if (SEGMENTS[0]) loadClip(SEGMENTS[0]);
+  setTimeout(() => {
+    SEGMENTS.forEach(s => loadClip(s));
+  }, 200);
   requestAnimationFrame(raf);
 
   // ---- helpers ----
